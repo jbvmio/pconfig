@@ -3,6 +3,7 @@ package pconfig
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"io/ioutil"
 	"os"
 )
 
@@ -12,6 +13,16 @@ func FileExists(filename string) bool {
 		return false
 	}
 	return true
+}
+
+// ReadSecret reads and returns the contents of a secrets file in the default secrets directory /run/secrets/.
+func ReadSecret(secretName string) ([]byte, error) {
+	return ioutil.ReadFile(`/run/secrets/` + secretName)
+}
+
+// ReadSecretFile reads and returns the contents of a secrets file using the path for the file.
+func ReadSecretFile(secretPath string) ([]byte, error) {
+	return ioutil.ReadFile(secretPath)
 }
 
 // CreateDirIfNotExist creates the directory path if it doesn't exist.
