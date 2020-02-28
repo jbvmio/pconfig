@@ -10,6 +10,7 @@ import (
 // PConfig is the config used for processors.
 type PConfig struct {
 	Environment         string
+	Datacenter          string
 	LogLevel            string
 	LogDir              string
 	GroupName           string
@@ -48,6 +49,7 @@ func GetPConfig(filePath string) *PConfig {
 	viper.SetDefault(`sleeptime`, 30)
 	viper.SetDefault(`loglevel`, `info`)
 	P.Environment = viper.GetString(`environment`)
+	P.Datacenter = viper.GetString(`datacenter`)
 	P.LogLevel = viper.GetString(`loglevel`)
 	P.LogDir = viper.GetString(`logfile`)
 	P.GroupName = viper.GetString(`groupname`)
